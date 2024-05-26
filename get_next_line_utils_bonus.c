@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otboumeh <otboumeh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/25 12:54:06 by otboumeh          #+#    #+#             */
+/*   Created: 2024/05/25 12:54:12 by otboumeh          #+#    #+#             */
 /*   Updated: 2024/05/26 16:35:39 by otboumeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 size_t	ft_strlen(const char *str)
 {
@@ -22,41 +22,32 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-
-/* This function concatenates two strings (deposit and buffer) and returns 
-the resulting string. If deposit is NULL, it initializes it as an empty 
-string. It dynamically allocates memory for the concatenated string and 
-frees the old deposit string. */
-
-
 char	*ft_strjoin(char	*deposit, const char	*buffer)
 {
 	int		i;
 	int		j;
 	char	*str;
 
-	// If deposit is NULL, initialize it as an empty string
 	if (!deposit)
 	{
 		deposit = (char *)malloc(1 * sizeof(char));
-		deposit[0] = '\0'; // Set the empty string
+		deposit[0] = '\0';
 	}
 	if (!deposit || !buffer)
 		return (NULL);
 	str = malloc(sizeof(char) * (ft_strlen(deposit) + ft_strlen(buffer) + 1));
 	if (str == NULL)
 		return (0);
-	i = -1; // Initialize i to -1 to use pre-increment in the loop
+	i = -1;
 	j = 0;
 	if (deposit)
-		while (deposit[++i] != '\0') // Increment i before using it
+		while (deposit[++i] != '\0')
 			str[i] = deposit[i];
 	while (buffer[j] != '\0')
 		str[i++] = buffer[j++];
-	// Null-terminate the new string
 	str[ft_strlen(deposit) + ft_strlen(buffer)] = '\0';
-	free (deposit);     // Free the old deposit string
-	return (str);     // Return the new concatenated string
+	free (deposit);
+	return (str);
 }
 
 char	*ft_strchr(const char *s, int c)
